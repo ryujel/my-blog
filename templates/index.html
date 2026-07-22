@@ -1,0 +1,19 @@
+<section class="intro">
+  <h1>My Blog</h1>
+  <p class="intro-desc">블로그 입력 테스트</p>
+  <img src="/assets/images/다운로드.jpg" alt="샘플 이미지" class="intro-image">
+</section>
+
+<div class="controls">
+  <input type="search" id="search-input" class="search-input" placeholder="검색..." aria-label="글 검색">
+  <div class="tag-filters" id="tag-filters">
+    <button class="tag-btn active" data-tag="all" type="button">전체</button>
+{{tagButtonsHtml}}
+  </div>
+</div>
+
+<ul class="post-list" id="post-list">
+{{postListItems}}
+</ul>
+
+<p class="empty-state" id="empty-state" hidden>일치하는 글이 없습니다.</p>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글 관리 — My Blog</title>
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<header class="site-header">
+  <span class="site-title">글 관리</span>
+</header>
+
+<main class="site-main admin-main">
+  <section class="admin-form-section">
+    <h2 id="form-heading">새 글 작성</h2>
+    <form id="post-form">
+      <label class="admin-label" for="title">제목</label>
+      <input type="text" id="title" class="admin-input" required>
+
+      <label class="admin-label" for="date">날짜</label>
+      <input type="date" id="date" class="admin-input">
+
+      <label class="admin-label" for="tags">태그 (쉼표로 구분)</label>
+      <input type="text" id="tags" class="admin-input" placeholder="예: 일상, 개발">
+
+      <label class="admin-label" for="body">본문 (마크다운)</label>
+      <textarea id="body" class="admin-textarea" rows="14" required></textarea>
+
+      <div class="admin-actions">
+        <button type="submit" class="admin-btn admin-btn-primary" id="submit-btn">저장</button>
+        <button type="button" class="admin-btn" id="cancel-btn" hidden>취소</button>
+      </div>
+      <p class="admin-status" id="form-status"></p>
+    </form>
+  </section>
+
+  <section class="admin-list-section">
+    <h2>글 목록</h2>
+    <ul class="admin-post-list" id="post-list"></ul>
+    <p class="empty-state" id="admin-empty" hidden>아직 작성된 글이 없습니다.</p>
+  </section>
+</main>
+
+<script src="/admin.js"></script>
+</body>
+</html>
