@@ -5,21 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{pageTitle}}</title>
 <link rel="stylesheet" href="/assets/css/style.css">
-<script>
-(function () {
-  var stored = localStorage.getItem('theme');
-  if (stored === 'dark' || stored === 'light') {
-    document.documentElement.setAttribute('data-theme', stored);
-  }
-})();
-</script>
 </head>
 <body>
 <header class="site-header">
   <a class="site-title" href="/index.html">My Blog</a>
-  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">
-    <span aria-hidden="true">🌓</span>
-  </button>
 </header>
 <main class="site-main">
 {{content}}
@@ -27,7 +16,6 @@
 <footer class="site-footer">
   <p>&copy; 2026 My Blog</p>
 </footer>
-<script src="/assets/js/main.js"></script>
 {{extraScript}}
 </body>
 </html>
