@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/my-blog/">
 <title>My Blog</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <script>
 (function () {
   var stored = localStorage.getItem('theme');
@@ -16,7 +17,7 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="site-title" href="/index.html">My Blog</a>
+  <a class="site-title" href="index.html">My Blog</a>
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">
     <span aria-hidden="true">🌓</span>
   </button>
@@ -25,7 +26,7 @@
 <section class="intro">
   <h1>My Blog</h1>
   <p class="intro-desc">블로그 입력 테스트</p>
-  <img src="/assets/images/다운로드.jpg" alt="샘플 이미지" class="intro-image">
+  <img src="assets/images/다운로드.jpg" alt="샘플 이미지" class="intro-image">
 </section>
 
 <div class="controls">
@@ -41,7 +42,7 @@
 
 <ul class="post-list" id="post-list">
 <li class="post-card" data-slug="auto-post-1" data-tags="테스트,자동생성">
-  <a class="post-card-link" href="/posts/auto-post-1.html">
+  <a class="post-card-link" href="posts/auto-post-1.html">
     <h2 class="post-card-title">테스트 게시물 1 (2026-07-22)</h2>
   </a>
   <div class="post-meta">
@@ -52,7 +53,7 @@
 </li>
 
 <li class="post-card" data-slug="auto-post-2" data-tags="테스트,자동생성">
-  <a class="post-card-link" href="/posts/auto-post-2.html">
+  <a class="post-card-link" href="posts/auto-post-2.html">
     <h2 class="post-card-title">테스트 게시물 2 (2026-07-22)</h2>
   </a>
   <div class="post-meta">
@@ -63,7 +64,7 @@
 </li>
 
 <li class="post-card" data-slug="auto-post-3" data-tags="테스트,자동생성">
-  <a class="post-card-link" href="/posts/auto-post-3.html">
+  <a class="post-card-link" href="posts/auto-post-3.html">
     <h2 class="post-card-title">테스트 게시물 3 (2026-07-22)</h2>
   </a>
   <div class="post-meta">
@@ -74,7 +75,7 @@
 </li>
 
 <li class="post-card" data-slug="오늘-배운-것" data-tags="개발,회고">
-  <a class="post-card-link" href="/posts/오늘-배운-것.html">
+  <a class="post-card-link" href="posts/오늘-배운-것.html">
     <h2 class="post-card-title">오늘 배운 것</h2>
   </a>
   <div class="post-meta">
@@ -92,7 +93,7 @@
 <footer class="site-footer">
   <p>&copy; 2026 My Blog</p>
 </footer>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/search.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
 </body>
 </html>

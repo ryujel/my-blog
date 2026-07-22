@@ -10,6 +10,7 @@ const POSTS_DIR = path.join(ROOT, 'posts');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 const ASSETS_DIR = path.join(ROOT, 'assets');
 const DIST_DIR = path.join(ROOT, 'docs');
+const SITE_BASE_PATH = '/my-blog/';
 
 function escapeHtmlAttr(text) {
   return String(text)
@@ -104,7 +105,7 @@ function loadPosts(warnings) {
       dateDisplay: formatDateDisplay(dateObj),
       dateIso: formatDateIso(dateObj),
       slug,
-      url: `/posts/${slug}.html`,
+      url: `posts/${slug}.html`,
       contentHtml,
       excerpt,
       searchContent: plainText.toLowerCase(),
@@ -151,6 +152,7 @@ function build() {
     });
     const page = renderTemplate(layoutTemplate, {
       pageTitle: `${escapeHtmlAttr(post.title)} — My Blog`,
+      basePath: SITE_BASE_PATH,
       content,
       extraScript: '',
     });
@@ -181,8 +183,9 @@ function build() {
   const indexContent = renderTemplate(indexTemplate, { tagButtonsHtml, postListItems });
   const indexPage = renderTemplate(layoutTemplate, {
     pageTitle: 'My Blog',
+    basePath: SITE_BASE_PATH,
     content: indexContent,
-    extraScript: '<script src="/assets/js/search.js"></script>',
+    extraScript: '<script src="assets/js/search.js"></script>',
   });
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexPage, 'utf8');
 

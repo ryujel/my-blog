@@ -9,7 +9,7 @@
   var recordsBySlug = {};
   var activeTag = 'all';
 
-  fetch('/search-index.json')
+  fetch('search-index.json')
     .then(function (res) {
       return res.json();
     })
