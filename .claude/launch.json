@@ -4,7 +4,7 @@
     {
       "name": "blog-dist",
       "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
-      "runtimeArgs": ["-e", "require('http').createServer((req,res)=>{const fs=require('fs');const path=require('path');let u=decodeURIComponent(req.url.split('?')[0]);let p=path.join('dist', u==='/'?'/index.html':u);fs.readFile(p,(err,data)=>{if(err){res.writeHead(404);res.end('Not found');return;}const ext=path.extname(p);const types={'.html':'text/html','.css':'text/css','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.webp':'image/webp'};res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'});res.end(data);});}).listen(process.env.PORT||8080,()=>console.log('listening'))"],
+      "runtimeArgs": ["-e", "require('http').createServer((req,res)=>{const fs=require('fs');const path=require('path');let u=decodeURIComponent(req.url.split('?')[0]);let p=path.join('docs', u==='/'?'/index.html':u);fs.readFile(p,(err,data)=>{if(err){res.writeHead(404);res.end('Not found');return;}const ext=path.extname(p);const types={'.html':'text/html','.css':'text/css','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.webp':'image/webp'};res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'});res.end(data);});}).listen(process.env.PORT||8080,()=>console.log('listening'))"],
       "port": 8080,
       "autoPort": true
     }

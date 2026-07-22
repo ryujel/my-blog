@@ -9,7 +9,7 @@ const ROOT = __dirname;
 const POSTS_DIR = path.join(ROOT, 'posts');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 const ASSETS_DIR = path.join(ROOT, 'assets');
-const DIST_DIR = path.join(ROOT, 'dist');
+const DIST_DIR = path.join(ROOT, 'docs');
 
 function escapeHtmlAttr(text) {
   return String(text)

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘 배운 것 — My Blog</title>
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>
+(function () {
+  var stored = localStorage.getItem('theme');
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="/index.html">My Blog</a>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">
+    <span aria-hidden="true">🌓</span>
+  </button>
+</header>
+<main class="site-main">
+<article class="post">
+  <h1 class="post-title">오늘 배운 것</h1>
+  <div class="post-meta">
+    <time datetime="2026-07-22">2026년 7월 22일</time>
+    <span class="tag">개발</span> <span class="tag">회고</span>
+  </div>
+  <div class="post-content">
+<p>클로드 코드로 정적 블로그를 만들면서, HTML/CSS/JavaScript가 각각 어떤 역할을 하는지 다시 한번 명확하게 정리할 수 있었다.</p>
+<h2>HTML — 구조와 내용</h2>
+<p>HTML은 페이지의 뼈대다. 글 제목, 본문, 목록, 폼 같은 콘텐츠가 어떤 요소인지 의미를 부여하는 역할을 한다.</p>
+<ul>
+<li><code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;</code> 같은 태그로 콘텐츠의 구조를 표현</li>
+<li><code>&lt;img&gt;</code>, <code>&lt;a&gt;</code> 같은 태그로 이미지·링크 등 다른 리소스와 연결</li>
+<li>마크다운 파일을 파싱한 결과도 결국 HTML로 변환되어야 브라우저가 이해할 수 있다</li>
+</ul>
+<h2>CSS — 표현과 스타일</h2>
+<p>CSS는 그 뼈대에 옷을 입히는 역할이다. 같은 HTML이라도 CSS에 따라 완전히 다른 느낌의 페이지가 된다.</p>
+<ul>
+<li><code>:root</code>에 CSS 변수를 선언해두면 라이트/다크 모드 전환이 훨씬 쉬워진다</li>
+<li><code>@media (prefers-color-scheme: dark)</code>로 시스템 다크 모드를 감지하고, <code>data-theme</code> 속성으로 수동 토글도 함께 지원할 수 있다</li>
+<li>반응형 레이아웃은 <code>max-width</code>와 미디어 쿼리 몇 줄만으로도 충분히 구현 가능하다</li>
+</ul>
+<h2>JavaScript — 동작과 상호작용</h2>
+<p>JavaScript는 정적인 페이지에 생명을 불어넣는 역할을 한다. 이 프로젝트에서는 특히 다음 두 가지 용도로 크게 쓰였다.</p>
+<ul>
+<li><strong>클라이언트 사이드 기능</strong>: 검색창 입력에 따라 글 목록을 필터링하거나, 다크모드 토글 버튼을 눌렀을 때 테마를 바꾸는 것처럼 브라우저 안에서 즉시 반응하는 동작</li>
+<li><strong>서버 사이드 스크립트</strong>: <code>build.js</code>처럼 Node.js 환경에서 마크다운 파일을 읽어 HTML로 변환하거나, 관리자 페이지에서 글을 저장·수정·삭제하는 것처럼 파일 시스템을 다루는 동작</li>
+</ul>
+<p>같은 언어라도 실행되는 환경(브라우저 vs Node.js)에 따라 할 수 있는 일과 역할이 완전히 달라진다는 점이 인상 깊었다.</p>
+<h2>정리</h2>
+<ul>
+<li>HTML: 콘텐츠의 의미와 구조</li>
+<li>CSS: 콘텐츠의 표현과 스타일</li>
+<li>JavaScript: 콘텐츠의 동작과 상호작용, 그리고 서버 쪽에서는 데이터 처리까지</li>
+</ul>
+<p>프레임워크 없이 세 가지를 순수하게 다뤄보니, 평소 프레임워크가 대신 해주던 일들이 무엇이었는지 체감할 수 있었다.</p>
+  </div>
+  <p class="post-back"><a href="/index.html">&larr; 목록으로</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p>&copy; 2026 My Blog</p>
+</footer>
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>
