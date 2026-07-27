@@ -57,7 +57,17 @@ function readPost(filename) {
   };
 }
 
+function assertNoNewlines(value, fieldName) {
+  if (typeof value === 'string' && /[\r\n]/.test(value)) {
+    throw new Error(`${fieldName}에 줄바꿈 문자를 포함할 수 없습니다.`);
+  }
+}
+
 function serializePost({ title, date, tags, body }) {
+  assertNoNewlines(title, '제목');
+  assertNoNewlines(date, '날짜');
+  if (Array.isArray(tags)) tags.forEach((tag) => assertNoNewlines(tag, '태그'));
+
   const tagsLine = Array.isArray(tags) && tags.length ? `[${tags.join(', ')}]` : '[]';
   return `---
 title: ${title}
@@ -103,14 +113,18 @@ function sendJson(res, statusCode, data) {
 function readJsonBody(req) {
   return new Promise((resolve, reject) => {
     let raw = '';
+    let aborted = false;
     req.on('data', (chunk) => {
+      if (aborted) return;
       raw += chunk;
       if (raw.length > 5 * 1024 * 1024) {
+        aborted = true;
         reject(new Error('요청 본문이 너무 큽니다.'));
         req.destroy();
       }
     });
     req.on('end', () => {
+      if (aborted) return;
       if (!raw) return resolve({});
       try {
         resolve(JSON.parse(raw));
@@ -118,13 +132,18 @@ function readJsonBody(req) {
         reject(new Error('잘못된 JSON입니다.'));
       }
     });
-    req.on('error', reject);
+    req.on('error', (err) => {
+      if (aborted) return;
+      aborted = true;
+      reject(err);
+    });
   });
 }
 
 function serveFile(baseDir, relPath, res) {
-  const filePath = path.join(baseDir, relPath);
-  if (!filePath.startsWith(baseDir)) {
+  const resolvedBase = path.resolve(baseDir);
+  const filePath = path.resolve(resolvedBase, relPath);
+  if (filePath !== resolvedBase && !filePath.startsWith(resolvedBase + path.sep)) {
     res.writeHead(403);
     res.end('Forbidden');
     return;
@@ -193,14 +212,28 @@ async function handleApi(req, res, pathname) {
 
     sendJson(res, 404, { error: 'Not found' });
   } catch (err) {
+    if (res.writableEnded || res.destroyed) return;
     sendJson(res, 400, { error: err.message });
   }
+}
+
+const TRUSTED_ORIGINS = new Set([`http://localhost:${PORT}`, `http://127.0.0.1:${PORT}`]);
+
+// State-changing requests always carry an Origin header in modern browsers;
+// reject cross-origin ones to block CSRF against this local admin API.
+function isTrustedOrigin(req) {
+  const origin = req.headers.origin;
+  if (!origin) return true;
+  return TRUSTED_ORIGINS.has(origin);
 }
 
 const server = http.createServer((req, res) => {
   const pathname = req.url.split('?')[0];
 
   if (pathname.startsWith('/api/')) {
+    if (req.method !== 'GET' && !isTrustedOrigin(req)) {
+      return sendJson(res, 403, { error: '허용되지 않은 요청 출처입니다.' });
+    }
     handleApi(req, res, pathname);
     return;
   }
@@ -208,6 +241,6 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res, pathname);
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`관리자 페이지: http://localhost:${PORT}`);
 });
