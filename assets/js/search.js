@@ -49,8 +49,16 @@
     }
   }
 
+  function debounce(fn, delay) {
+    var timer = null;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(fn, delay);
+    };
+  }
+
   if (searchInput) {
-    searchInput.addEventListener('input', applyFilters);
+    searchInput.addEventListener('input', debounce(applyFilters, 150));
   }
 
   if (tagFilters) {
