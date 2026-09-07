@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/my-blog/">
+<title>테스트 게시물 (2026-09-02) — My Blog</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+(function () {
+  var stored = localStorage.getItem('theme');
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="index.html">My Blog</a>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">
+    <span aria-hidden="true">🌓</span>
+  </button>
+</header>
+<main class="site-main">
+<article class="post">
+  <h1 class="post-title">테스트 게시물 (2026-09-02)</h1>
+  <div class="post-meta">
+    <time datetime="2026-09-02">2026년 9월 2일</time>
+    <span class="tag">테스트</span> <span class="tag">자동생성</span>
+  </div>
+  <div class="post-content">
+<p>이 글은 클라우드 예약 루틴이 매일 자동으로 생성하는 테스트 게시물입니다. 오늘 날짜는 2026-09-02이며, 별도의 수동 개입 없이 스케줄에 따라 작성되었습니다. 블로그 빌드와 배포 파이프라인이 정상 동작하는지 확인하기 위한 용도입니다.</p>
+  </div>
+  <p class="post-back"><a href="index.html">&larr; 목록으로</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p>&copy; 2026 My Blog</p>
+</footer>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
